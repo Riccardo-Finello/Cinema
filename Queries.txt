@@ -1,0 +1,31 @@
+CREATE TABLE `cinema`.`film` ( `ID` INT(8) NOT NULL AUTO_INCREMENT ,
+ `Title` VARCHAR(100) NOT NULL ,
+ `Plot` VARCHAR(1500) NOT NULL ,
+ `Thumbnail` VARCHAR(200) NOT NULL ,
+ PRIMARY KEY (`ID`)) 
+ ENGINE = InnoDB;
+
+ CREATE TABLE `proiezioni` ( `ID` INT(8) NOT NULL AUTO_INCREMENT ,
+ `Movie` INT(8) NOT NULL ,
+ `Date` DATETIME NOT NULL ,
+ `Room` INT(3) NOT NULL, 
+ PRIMARY KEY (`ID`)) 
+ ENGINE = InnoDB;
+
+INSERT INTO `film` (`ID`, `Title`, `Plot`, `Thumbnail`) 
+  VALUES (NULL,
+  'Taxi Driver',
+  'Un tassista di New York dal carattere sensibile e solitario scivola lentamente in una spirale di follia che lo spinge a ribellarsi in maniera violenta alle ingiustizie di una società corrotta e alienante.',
+ 'https://m.media-amazon.com/images/M/MV5BM2M1MmVhNDgtNmI0YS00ZDNmLTkyNjctNTJiYTQ2N2NmYzc2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY1200_CR80,0,630,1200_AL_.jpg');
+
+ INSERT INTO `film` (`ID`, `Title`, `Plot`, `Thumbnail`)
+ VALUES (NULL,
+ 'Non è un paese per vecchi',
+ 'Durante una battuta di caccia in solitaria, un saldatore del Texas trova e si impossessa di una somma di denaro precedentemente rubata. L\'uomo diventa così preda di una banda di criminali.',
+ 'http://aforismi.meglio.it/img/film/Non_%C3%A8_un_paese_per_vecchi.jpg');
+
+ INSERT INTO `film` (`ID`, `Title`, `Plot`, `Thumbnail`) 
+   VALUES (NULL,
+  'Avengers: Endgame',
+  'Alla deriva nello spazio senza cibo o acqua, Tony Stark vede la propria scorta di ossigeno diminuire di minuto in minuto. Nel frattempo, i restanti Vendicatori affrontano un epico scontro con Thanos.',
+  'https://lumiere-a.akamaihd.net/v1/images/p_avengersendgame_19751_e14a0104.jpeg?region=0%2C0%2C540%2C810');
