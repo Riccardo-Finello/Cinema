@@ -12,6 +12,8 @@ CREATE TABLE `cinema`.`film` ( `ID` INT(8) NOT NULL AUTO_INCREMENT ,
  PRIMARY KEY (`ID`)) 
  ENGINE = InnoDB;
 
+ALTER TABLE proiezioni ADD FOREIGN KEY (Movie) REFERENCES film(ID);
+
 INSERT INTO `film` (`ID`, `Title`, `Plot`, `Thumbnail`) 
   VALUES (NULL,
   'Taxi Driver',
