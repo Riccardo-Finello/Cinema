@@ -12,7 +12,7 @@
   
     <div class="nav">
       <nav>
-        <a href="/" aria-current="page">Home</a>
+        <a href="php/home.php" aria-current="page">Home</a>
         <a href="/" aria-current="page">Al Cinema</a>
         <a href="/" aria-current="page">Promozioni</a>
         <a href="/" aria-current="page">Log In</a>
@@ -39,7 +39,7 @@
             $html = "";
 
             foreach($results as $movie){
-              $html .= '<form action="info.php" method="post"><div class="movie"><input type="hidden" name = "hiddenId" value="' . $movie->ID . '">' . $movie->Title .'</div></form>';
+              $html .= '<form action="info.php" method="post"><div class="movie"><img src="'. $movie->Thumbnail .'/>"<input type="hidden" name = "hiddenId" value="' . $movie->ID . '"><br>' . $movie->Title .'</div></form>';
             }
 
             echo $html;

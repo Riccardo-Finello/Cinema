@@ -5,7 +5,8 @@
   body {
     margin: 0;
     font-family: system-ui, sans-serif;
-    background-color: #222222;
+    background-color: #0f0f0f;
+    overflow-x: hidden;
   }
   
   nav {
@@ -80,8 +81,13 @@
     min-width: 200px;
     min-height: 300px;
     text-align: center;
-    background-color: rgb(139, 202, 68);
+    background-color: rgb(0, 0, 0);
     margin: 5px;
+}
+
+.movie>img{
+  max-height: 300px;
+  width: auto;
 }
 
 #title{
@@ -93,18 +99,70 @@
 }
 
 #divider{
-  height: 100%;
   width: 100%;
   display: flex;
+  height: 100%;
+  margin-left: 25px;
+  
 }
 
 #picture{
-  width: 30%;
-  height: 100%;
-
+    min-width: 30%;
+    min-height: 100%;
+    text-align: center;
+    margin: 5px;
 }
 
 #info{
-  width:60%;
+  min-width: 50%;
+    min-height: 100%;
+    margin: 5px;
+    margin-right: 300px;
+}
+
+#picture>img{
+  max-width:70%;
+  max-height:70%;
+  width: auto;
+  height: auto;
+}
+
+#info>h3{
+  color:orangered;
+  font-size: 30px;
+  font-weight: 100;
+  margin-bottom: 30px;
+}
+
+#info>p{
+  font-size: 20px;
+  color:whitesmoke;
+}
+
+.projectionBox{
+  width: 100%;
+  display: flex;
+  height: 140px;
+  margin-right: 25px;
+  
+}
+
+.projection{
+  width: 200px;
   height: 100%;
+  margin-right: 30px;
+  background-color: #222222;
+  padding: 14px;
+  text-align: center;
+  color:#b1b1b1;
+  font-size: 25px;
+  border-radius: 4px;
+}
+
+.projectionDay{
+  color:#b1b1b1;
+  font-weight: 500;
+  font-size: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
