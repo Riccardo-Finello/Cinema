@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/styles.css">
+    
 </head>
 <body>
+  
     <div class="nav">
       <nav>
         <a href="/" aria-current="page">Home</a>
@@ -28,7 +30,7 @@
         <?php
             require "dbconfig.php";
 
-            $sql = "SELECT * FROM proiezioni p JOIN `film` f ON p.Movie = f.id ORDER BY p.Date LIMIT 5";
+            $sql = "SELECT * FROM proiezioni p JOIN `film` f ON p.Movie = f.id GROUP BY p.Movie ORDER BY p.Date  LIMIT 5";
             $query = $dbh->prepare($sql);
             $query->execute();
 
@@ -37,12 +39,13 @@
             $html = "";
 
             foreach($results as $movie){
-              $html .= '<div class="movie">' . $movie->Title .'</div>';
+              $html .= '<form action="info.php" method="post"><div class="movie"><input type="hidden" name = "hiddenId" value="' . $movie->ID . '">' . $movie->Title .'</div></form>';
             }
 
             echo $html;
             
         ?>
     </div>
+    <script type="module" src="../js/home.js"></script>
 </body>
 </html>

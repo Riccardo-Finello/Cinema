@@ -91,3 +91,20 @@
     text-align: center;
     font-weight: 100;
 }
+
+#divider{
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+#picture{
+  width: 30%;
+  height: 100%;
+
+}
+
+#info{
+  width:60%;
+  height: 100%;
+}
