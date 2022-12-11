@@ -12,8 +12,12 @@
 <?php session_start(); setlocale(LC_ALL, 'it_IT.UTF-8'); //non va su xampp?>
 <?php 
         require "dbconfig.php";
-
-        $id = $_POST['hiddenId'];
+        
+        if(isset($_POST['hiddenId'])){
+            $_SESSION['movie'] = $_POST['hiddenId'];
+        }
+        echo '<script>console.log("' . $_SESSION['booking'] . '")</script>';
+        $id = $_SESSION['movie'];
         $sql = "SELECT * FROM film f WHERE f.ID = $id";             //query film
         $query = $dbh->prepare($sql);
         $query->execute();
@@ -29,12 +33,21 @@
         
         
 ?>
-<div class="nav">
+    <div class="nav">
       <nav>
         <a href="home.php" aria-current="page">Home</a>
         <a href="/" aria-current="page">Al Cinema</a>
         <a href="/" aria-current="page">Promozioni</a>
-        <a href="../php/loginInterface.php" aria-current="page">Log In</a>
+        <?php 
+          if(isset($_SESSION['ID'])){
+            echo '<h4>' . $_SESSION['Name'] . '</h4><a href="../php/logout.php" aria-current="page">Log Out</a>';
+          }
+          else{
+            echo '<a href="../php/loginInterface.php" aria-current="page">Log In</a><a href="../php/registerInterface.php" aria-current="page">Registrati</a>';
+          }
+        ?>
+
+        
       </nav>
     </div>
     <h1 id="title"><?php 
@@ -73,7 +86,8 @@
                         $html .= '</div><div class="projectionDay">' . date("l d F Y",strtotime($p->Date)) . '</div><div class="projectionBox">';
                     }
 
-                    $html .= '<div class="projection">' . date("H:i",strtotime($p->Date)) . ", sala " . $p->Room . "</div>";
+                    $html .= '<div class="projection">' . date("H:i",strtotime($p->Date)) . ", sala " . $p->Room . "<form action='booking.php' method='POST'>
+                    <input type='hidden' name='id' value=" . $p->ID ."></input><input type='submit' value='Prenota'></input></form></div>";
                 }
             }
             else{
@@ -86,6 +100,7 @@
         </div>
     </div>
 </body>
+<script src="../js/info.js"></script>
 </html>
 
 <!-- comments >

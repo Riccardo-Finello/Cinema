@@ -32,7 +32,7 @@
 
     $dbh = new PDO("mysql:host=" . DB_HOST , DB_USER, DB_PASS);
 
-    $dbh->exec("CREATE DATABASE IF NOT EXISTS `5dii_projectinfo`;
+    $dbh->exec("CREATE DATABASE IF NOT EXISTS `cinema`;
                 CREATE USER IF NOT EXISTS '$user'@'localhost' IDENTIFIED BY '$pass';
                 GRANT ALL ON `cinema`.* TO '$user'@'localhost';
                 FLUSH PRIVILEGES;

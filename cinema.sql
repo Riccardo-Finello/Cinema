@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Dic 05, 2022 alle 12:54
--- Versione del server: 10.4.21-MariaDB
--- Versione PHP: 8.0.11
+-- Creato il: Dic 11, 2022 alle 16:50
+-- Versione del server: 10.4.25-MariaDB
+-- Versione PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -51,9 +51,9 @@ CREATE TABLE `film` (
 --
 
 INSERT INTO `film` (`ID`, `Title`, `Plot`, `Thumbnail`) VALUES
-(1, 'Taxi Driver', 'Un tassista di New York dal carattere sensibile e solitario scivola lentamente in una spirale di follia che lo spinge a ribellarsi in maniera violenta alle ingiustizie di una società corrotta e alienante.', 'https://m.media-amazon.com/images/M/MV5BM2M1MmVhNDgtNmI0YS00ZDNmLTkyNjctNTJiYTQ2N2NmYzc2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY1200_CR80,0,630,1200_AL_.jpg'),
-(2, 'Non è un paese per vecchi', 'Durante una battuta di caccia in solitaria, un saldatore del Texas trova e si impossessa di una somma di denaro precedentemente rubata. L\'uomo diventa così preda di una banda di criminali.', 'http://aforismi.meglio.it/img/film/Non_%C3%A8_un_paese_per_vecchi.jpg'),
-(3, 'Avengers: Endgame', 'Alla deriva nello spazio senza cibo o acqua, Tony Stark vede la propria scorta di ossigeno diminuire di minuto in minuto. Nel frattempo, i restanti Vendicatori affrontano un epico scontro con Thanos.', 'https://lumiere-a.akamaihd.net/v1/images/p_avengersendgame_19751_e14a0104.jpeg?region=0%2C0%2C540%2C810');
+(1, 'Taxi Driver', 'Un tassista di New York dal carattere sensibile e solitario scivola lentamente in una spirale di follia che lo spinge a ribellarsi in maniera violenta alle ingiustizie di una società corrotta e alienante.', '../pics/taxiDriver.jpg'),
+(2, 'Non è un paese per vecchi', 'Durante una battuta di caccia in solitaria, un saldatore del Texas trova e si impossessa di una somma di denaro precedentemente rubata. L\'uomo diventa così preda di una banda di criminali.', '../pics/Non_è_un_paese_per_vecchi.jpg'),
+(3, 'Avengers: Endgame', 'Alla deriva nello spazio senza cibo o acqua, Tony Stark vede la propria scorta di ossigeno diminuire di minuto in minuto. Nel frattempo, i restanti Vendicatori affrontano un epico scontro con Thanos.', '../pics/avengers_endgame.jpg');
 
 -- --------------------------------------------------------
 
@@ -68,6 +68,37 @@ CREATE TABLE `proiezioni` (
   `Room` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dump dei dati per la tabella `proiezioni`
+--
+
+INSERT INTO `proiezioni` (`ID`, `Movie`, `Date`, `Room`) VALUES
+(3, 1, '2022-12-23 12:00:00', 1),
+(4, 2, '2022-12-30 16:30:00', 2),
+(5, 3, '2023-01-05 18:00:00', 2),
+(6, 1, '2023-01-05 18:00:00', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `rooms`
+--
+
+CREATE TABLE `rooms` (
+  `Id` int(6) NOT NULL,
+  `Seats` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `rooms`
+--
+
+INSERT INTO `rooms` (`Id`, `Seats`) VALUES
+(1, 100),
+(2, 80),
+(3, 150),
+(4, 150);
+
 -- --------------------------------------------------------
 
 --
@@ -77,8 +108,19 @@ CREATE TABLE `proiezioni` (
 CREATE TABLE `users` (
   `ID` int(8) NOT NULL,
   `mail` varchar(100) NOT NULL,
-  `name` varchar(100) NOT NULL
+  `name` varchar(100) NOT NULL,
+  `Password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `users`
+--
+
+INSERT INTO `users` (`ID`, `mail`, `name`, `Password`) VALUES
+(1, 'asolazzo@itisrossi.vi.it', 'Alessandro Solazzo', '123'),
+(2, '6190001@itisrossi.vi.it', 'Riccardo Finello', '123'),
+(3, 'acosta@itisrossi.vi.it', 'Alberto Costa', '123'),
+(4, 'flovison@itisrossi.vi.it', 'Fabrizio Lovison', '123');
 
 --
 -- Indici per le tabelle scaricate
@@ -103,7 +145,14 @@ ALTER TABLE `film`
 --
 ALTER TABLE `proiezioni`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `Movie` (`Movie`);
+  ADD KEY `Movie` (`Movie`),
+  ADD KEY `Room` (`Room`);
+
+--
+-- Indici per le tabelle `rooms`
+--
+ALTER TABLE `rooms`
+  ADD PRIMARY KEY (`Id`);
 
 --
 -- Indici per le tabelle `users`
@@ -132,13 +181,19 @@ ALTER TABLE `film`
 -- AUTO_INCREMENT per la tabella `proiezioni`
 --
 ALTER TABLE `proiezioni`
-  MODIFY `ID` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT per la tabella `rooms`
+--
+ALTER TABLE `rooms`
+  MODIFY `Id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Limiti per le tabelle scaricate
@@ -155,7 +210,8 @@ ALTER TABLE `bookings`
 -- Limiti per la tabella `proiezioni`
 --
 ALTER TABLE `proiezioni`
-  ADD CONSTRAINT `proiezioni_ibfk_1` FOREIGN KEY (`Movie`) REFERENCES `film` (`ID`);
+  ADD CONSTRAINT `proiezioni_ibfk_1` FOREIGN KEY (`Movie`) REFERENCES `film` (`ID`),
+  ADD CONSTRAINT `proiezioni_ibfk_2` FOREIGN KEY (`Room`) REFERENCES `rooms` (`Id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
