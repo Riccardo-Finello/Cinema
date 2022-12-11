@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>The Rossi Cinema:Home</title>
     <link rel="stylesheet" href="../css/styles.css">
     
 </head>
@@ -12,16 +12,20 @@
   
     <div class="nav">
       <nav>
-        <a href="php/home.php" aria-current="page">Home</a>
+        <a href="home.php" aria-current="page">Home</a>
         <a href="/" aria-current="page">Al Cinema</a>
         <a href="/" aria-current="page">Promozioni</a>
-        <a href="/" aria-current="page">Log In</a>
-        <input type="text" placeholder="Cerca.." />
-        <button class="search">
-        <span class="material-symbols-outlined">
-        search
-        </span>
-        </button>
+        <?php 
+          session_start();
+          if(isset($_SESSION['ID'])){
+            echo '<h4>' . $_SESSION['Name'] . '</h4><a href="../php/logout.php" aria-current="page">Log Out</a>';
+          }
+          else{
+            echo '<a href="../php/loginInterface.php" aria-current="page">Log In</a><a href="../php/registerInterface.php" aria-current="page">Registrati</a>';
+          }
+        ?>
+
+        
       </nav>
     </div>
     <h1 id="title">The Rossi Cinema</h1>
@@ -39,7 +43,8 @@
             $html = "";
 
             foreach($results as $movie){
-              $html .= '<form action="info.php" method="post"><div class="movie"><img src="'. $movie->Thumbnail .'/>"<input type="hidden" name = "hiddenId" value="' . $movie->ID . '"><br>' . $movie->Title .'</div></form>';
+              $html .= '<form action="info.php" method="post"><div class="movie" style="background-image: url( ' . $movie->Thumbnail . ')"><input type="hidden" name = "hiddenId" value="' 
+              . $movie->ID . '"><div class="movieTitle">' . $movie->Title .'</div></div></form>';
             }
 
             echo $html;

@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<?php setlocale(LC_ALL, 'it_IT.UTF-8'); //non va su xampp?>
+<?php session_start(); setlocale(LC_ALL, 'it_IT.UTF-8'); //non va su xampp?>
 <?php 
         require "dbconfig.php";
 
@@ -34,13 +34,7 @@
         <a href="home.php" aria-current="page">Home</a>
         <a href="/" aria-current="page">Al Cinema</a>
         <a href="/" aria-current="page">Promozioni</a>
-        <a href="/" aria-current="page">Log In</a>
-        <input type="text" placeholder="Cerca.." />
-        <button class="search">
-        <span class="material-symbols-outlined">
-        search
-        </span>
-        </button>
+        <a href="../php/loginInterface.php" aria-current="page">Log In</a>
       </nav>
     </div>
     <h1 id="title"><?php 
