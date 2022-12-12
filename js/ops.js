@@ -15,7 +15,7 @@ plus.addEventListener('click', () => {
 
 
 minus.addEventListener('click', () => {
-        if(posti >0){
+        if(posti >1){
         posti--;
         p.innerHTML = posti;
     }

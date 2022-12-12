@@ -40,12 +40,9 @@
             //echo "<script>console.log('" . print_r($_POST) ."')</script>";
             if(isset($_POST['id'])){
                 $_SESSION['booking'] = $_POST['id'];
-                echo "<script>console.log('new page')</script>";
             }
             $p = $_SESSION['booking'];
-
             
-            echo "<script>console.log('" . $_SESSION['booking'] ."')</script>";
             $sql = "SELECT * FROM proiezioni WHERE id = $p";
             $query = $dbh->prepare($sql);
             $query->execute();
@@ -83,10 +80,15 @@
             if(isset($_POST['cycle'])){     
                 $seats = $_POST['cycle'];                //recall pagina
                 $user = $_SESSION['ID'];
-                $sql = "INSERT INTO `bookings`(`ID`, `Projection`, `User`, `Seats`) VALUES ('null','$projection->ID', '$user','$seats')";
-                $query = $dbh->prepare($sql);
-                $query->execute();
-                $results = $query->fetchAll(PDO::FETCH_OBJ);
+                if($avaibleSeats - $seats >= 0){
+                    $sql = "INSERT INTO `bookings`(`ID`, `Projection`, `User`, `Seats`) VALUES ('null','$projection->ID', '$user','$seats')";
+                    $query = $dbh->prepare($sql);
+                    $query->execute();
+                    $results = $query->fetchAll(PDO::FETCH_OBJ);
+                }
+                else{
+                    echo "<script>alert('Posti non disponibili')</script>";
+                }
             }
         ?>
         </div>
@@ -95,7 +97,7 @@
         ?>
         <div class="bookBox">
             <div id="minus" class="operator"><h1>-</h1></div>
-            <div class="operator"><h1 id="seats">0</h1></div>
+            <div class="operator"><h1 id="seats">1</h1></div>
             <div id="plus" class="operator"><h1>+</h1></div>
         </div>
         <div class="bookBox">
@@ -105,5 +107,6 @@
             </form>
         </div>
 </body>
+<script src="../js/info.js"></script>
 <script src="../js/ops.js"></script>
 </html>

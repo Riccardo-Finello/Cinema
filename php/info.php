@@ -57,7 +57,7 @@
     <div id="divider">
         <div id="picture">
         <img src=<?php
-                echo '"' . $movie->Thumbnail .'"';
+                echo '"../pics/' . $movie->Thumbnail .'"';
                 ?> />
         </div>
         <div id= "info">
@@ -68,11 +68,11 @@
         <?php
             //print_r($projections);
             
-            $today =  date('m/d/Y h:i:s a', time());
+            $today =  date('d/m/Y h:i:s a', time());
             $html = "";
             
             if($projections > 0){
-                if($projections[0]->Date){
+                if($projections[0]->Date > $today){
                     $date = $projections[0]->Date;
                     $html .= '<div class="projectionDay">' . date("l d F Y",strtotime($projections[0]->Date)) . '</div><div class="projectionBox">';
                 }
@@ -81,13 +81,15 @@
                 }
 
                 foreach($projections as $p){
-                    
-                    if($date < $p->Date && $p->Date > $today){
-                        $html .= '</div><div class="projectionDay">' . date("l d F Y",strtotime($p->Date)) . '</div><div class="projectionBox">';
-                    }
 
-                    $html .= '<div class="projection">' . date("H:i",strtotime($p->Date)) . ", sala " . $p->Room . "<form action='booking.php' method='POST'>
-                    <input type='hidden' name='id' value=" . $p->ID ."></input><input type='submit' value='Prenota'></input></form></div>";
+                    if(strtotime($p->Date) >  strtotime($today)){
+                        if(strtotime($p->Date) >  strtotime($date)){
+                            $html .= '</div><div class="projectionDay">' . date("l d F Y",strtotime($p->Date)) . '</div><div class="projectionBox">';
+                        }
+                        
+                        $html .= '<div class="projection">' . date("H:i",strtotime($p->Date)) . ", sala " . $p->Room . "<form action='booking.php' method='POST'>
+                        <input type='hidden' name='id' value=" . $p->ID ."></input><input type='submit' value='Prenota'></input></form></div>";
+                    }
                 }
             }
             else{

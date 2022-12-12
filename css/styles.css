@@ -264,3 +264,12 @@ h3{
   font-size: 30px;
   font-weight: 400;
 }
+
+.bookTable{
+  width: 80%;
+  text-align: center;
+  color: white;
+  font-size: 28px;
+  font-weight: 100;
+  margin: 50px;
+}
