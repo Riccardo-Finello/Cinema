@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Dic 12, 2022 alle 18:56
+-- Creato il: Dic 13, 2022 alle 18:19
 -- Versione del server: 10.4.25-MariaDB
 -- Versione PHP: 8.1.10
 
@@ -39,10 +39,9 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`ID`, `Projection`, `User`, `Seats`) VALUES
-(3, 6, 2, 10),
-(5, 3, 2, 5),
-(6, 3, 2, 5),
-(7, 4, 1, 4);
+(7, 4, 1, 4),
+(26, 3, 2, 6),
+(27, 7, 3, 5);
 
 -- --------------------------------------------------------
 
@@ -66,7 +65,13 @@ INSERT INTO `film` (`ID`, `Title`, `Plot`, `Thumbnail`) VALUES
 (2, 'Non è un paese per vecchi', 'Durante una battuta di caccia in solitaria, un saldatore del Texas trova e si impossessa di una somma di denaro precedentemente rubata. L\'uomo diventa così preda di una banda di criminali.', '../pics/Non_è_un_paese_per_vecchi.jpg'),
 (3, 'Avengers: Endgame', 'Alla deriva nello spazio senza cibo o acqua, Tony Stark vede la propria scorta di ossigeno diminuire di minuto in minuto. Nel frattempo, i restanti Vendicatori affrontano un epico scontro con Thanos.', '../pics/avengers_endgame.jpg'),
 (4, 'Top Gun: Maverick', 'Dopo oltre 30 anni di servizio come uno dei migliori aviatori della Marina, Pete \"Maverick\" Mitchell è il posto a cui appartiene, spingendosi oltre i limiti come coraggioso pilota collaudatore e schivando l\'avanzamento di grado che lo avrebbe radicato. Addestrando un distaccamento di laureati per un incarico speciale, Maverick deve affrontare i fantasmi del suo passato e le sue paure più profonde, culminando in una missione che richiede il massimo sacrificio da coloro che scelgono di volare.', 'Top_gun.jpg'),
-(5, 'Drive', '\r\nDriver è un abile stuntman di Hollywood che lavora al chiaro di luna come autista di fuga per i criminali. Sebbene proietti un aspetto gelido, ultimamente si sta avvicinando a una graziosa vicina di nome Irene e al suo giovane figlio, Benicio. Quando il marito di Irene esce di prigione, chiede aiuto a Driver per una rapina da un milione di dollari. Il lavoro va terribilmente storto e Driver deve rischiare la vita per proteggere Irene e Benicio dalle menti vendicative dietro la rapina.', 'Drive.jpg');
+(5, 'Drive', '\r\nDriver è un abile stuntman di Hollywood che lavora al chiaro di luna come autista di fuga per i criminali. Sebbene proietti un aspetto gelido, ultimamente si sta avvicinando a una graziosa vicina di nome Irene e al suo giovane figlio, Benicio. Quando il marito di Irene esce di prigione, chiede aiuto a Driver per una rapina da un milione di dollari. Il lavoro va terribilmente storto e Driver deve rischiare la vita per proteggere Irene e Benicio dalle menti vendicative dietro la rapina.', 'Drive.jpg'),
+(6, 'Indiana Jones e i Predatori dell\'Arca Perduta', 'Racconto epico in cui un intrepido archeologo cerca di sconfiggere una banda di nazisti per ottenere una reliquia religiosa unica che è centrale nei loro piani per il dominio del mondo. Combattendo contro una fobia dei serpenti e una vendicativa ex fidanzata, Indiana Jones è in costante pericolo, scappando a ogni angolo in questa celebrazione degli innocenti film d\'avventura di un\'era precedente.', 'Indiana_Jones_ROTLA.jpg'),
+(7, 'Avatar 2: La Via dell\'acqua', '\r\nJake Sully e Ney\'tiri hanno formato una famiglia e stanno facendo di tutto per restare insieme. Tuttavia, devono lasciare la loro casa ed esplorare le regioni di Pandora. Quando un\'antica minaccia ricompare, Jake deve combattere una difficile guerra contro gli umani.', 'Avatar2.jpg'),
+(8, 'American Psycho', 'A New York City nel 1987, un giovane e affascinante professionista urbano, Patrick Bateman (Christian Bale), vive una seconda vita come un raccapricciante serial killer di notte. Il cast è composto dal detective (Willem Dafoe), dal fidanzato (Reese Witherspoon), dall\'amante (Samantha Mathis), dal collega (Jared Leto) e dalla segretaria (Chloë Sevigny). Questa è una commedia pungente e ironica che esamina gli elementi che rendono un uomo un mostro.', 'AmericanPsycho.jpg'),
+(9, 'The Lighthouse', 'Due guardiani del faro cercano di mantenere la loro sanità mentale mentre vivono su una remota e misteriosa isola del New England nel 1890.', 'TheLightHouse.jpg'),
+(10, 'The Shining', 'Jack Torrance (Jack Nicholson) diventa custode invernale presso l\'isolato Overlook Hotel in Colorado, sperando di curare il suo blocco dello scrittore. Si stabilisce insieme a sua moglie, Wendy (Shelley Duvall), e suo figlio, Danny (Danny Lloyd), che è afflitto da premonizioni psichiche. Mentre la scrittura di Jack non va da nessuna parte e le visioni di Danny diventano più inquietanti, Jack scopre gli oscuri segreti dell\'hotel e inizia a trasformarsi in un maniaco omicida deciso a terrorizzare la sua famiglia.', 'Shining.jpg'),
+(11, 'Blade Runner 2049', 'L\'agente K (Ryan Gosling), un nuovo blade runner del dipartimento di polizia di Los Angeles, porta alla luce un segreto a lungo sepolto che ha il potenziale per far precipitare nel caos ciò che resta della società. La sua scoperta lo porta alla ricerca di Rick Deckard (Harrison Ford), un ex blade runner scomparso da 30 anni.', 'BladeRunner2049.jpg');
 
 -- --------------------------------------------------------
 
@@ -92,7 +97,15 @@ INSERT INTO `proiezioni` (`ID`, `Movie`, `Date`, `Room`) VALUES
 (6, 1, '2023-01-05 18:00:00', 3),
 (7, 4, '2023-01-08 18:00:00', 2),
 (9, 5, '2022-12-26 17:00:00', 1),
-(10, 5, '2022-05-13 18:30:00', 4);
+(10, 5, '2022-05-13 18:30:00', 4),
+(11, 6, '2022-12-30 20:00:00', 4),
+(12, 6, '2023-01-12 15:00:00', 2),
+(13, 7, '2022-12-23 15:00:00', 1),
+(14, 8, '2023-02-15 20:00:00', 4),
+(15, 8, '2023-01-24 21:00:00', 4),
+(16, 9, '2023-01-30 22:00:00', 2),
+(17, 10, '2022-12-31 20:00:00', 2),
+(18, 11, '2023-01-14 21:00:00', 4);
 
 -- --------------------------------------------------------
 
@@ -186,19 +199,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT per la tabella `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `ID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT per la tabella `film`
 --
 ALTER TABLE `film`
-  MODIFY `ID` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT per la tabella `proiezioni`
 --
 ALTER TABLE `proiezioni`
-  MODIFY `ID` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT per la tabella `rooms`

@@ -91,6 +91,7 @@ h3{
 .movie{
     min-width: 200px;
     min-height: 300px;
+    max-width: 200px;
     text-align: center;
     background-color: rgb(0, 0, 0);
     margin: 5px;

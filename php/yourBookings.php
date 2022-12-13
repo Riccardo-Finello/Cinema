@@ -15,23 +15,9 @@
         }
     ?>
 
-    <div class="nav">
-      <nav>
-        <a href="home.php" aria-current="page">Home</a>
-        <a href="yourBookings.php" aria-current="page">Le tue prenotazioni</a>
-        <a href="/" aria-current="page">Promozioni</a>
-        <?php 
-          if(isset($_SESSION['ID'])){
-            echo '<h4>' . $_SESSION['Name'] . '</h4><a href="../php/logout.php" aria-current="page">Log Out</a>';
-          }
-          else{
-            echo '<a href="../php/loginInterface.php" aria-current="page">Log In</a><a href="../php/registerInterface.php" aria-current="page">Registrati</a>';
-          }
-        ?>
-
-        
-      </nav>
-    </div>
+    <?php
+      require_once "nav.php";
+    ?>
 
     <h1 id="title">Le tue prenotazioni</h1>
     <table class="bookTable">
@@ -45,11 +31,14 @@
         </tr>
     <?php
         require "dbconfig.php";
-        $sql = "SELECT * FROM bookings b JOIN proiezioni p ON b.User = 2 AND b.Projection = p.ID JOIN film f on p.Movie = f.ID ORDER BY p.Date";
+        $user = $_SESSION['ID'];
+        $sql = "SELECT * FROM bookings b JOIN proiezioni p ON b.User = $user AND b.Projection = p.ID JOIN film f on p.Movie = f.ID ORDER BY p.Date";
         $query = $dbh->prepare($sql);
         $query->execute();
         $results = $query->fetchAll(PDO::FETCH_OBJ);
-        if($results>0){
+        $rowN = 0;
+        //echo '<script>console.log("' . print_r(mysqli_num_rows($results)) .'")</script>';
+        
             foreach($results as $booking){
                 echo '<th><form action="info.php" method="post"><div class="movie" style="background-image: url( ../pics/' . $booking->Thumbnail . '); width:10px;"><input type="hidden" name = "hiddenId" value="' 
                 . $booking->ID . '"><div class="movieTitle" style="font-size:20px">' . $booking->Title .'</div></div></form></th><th><div class="field">' . $booking->Title .'</div></th><th>
@@ -59,10 +48,15 @@
                 </th>
                 
                 </tr>';
+                $rowN++;
             }
+            echo '</table>';
+        
+        if($rowN == 0){
+          echo '</table><br><div class="projectionDay" style="text-align:center; width:100%">Non hai prenotato nessun biglietto al momento</div>';
         }
     ?>
     
-    </table>
+    
 </body>
 </html>
