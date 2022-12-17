@@ -1,7 +1,8 @@
 var button = document.querySelector("#submit");
 
-button.addEventListener('click', async () => {
+button.addEventListener('click', async (e) => {
 
+    e.preventDefault();
     var form = document.querySelector("#form");
     console.log("click");
 

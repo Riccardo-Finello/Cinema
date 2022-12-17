@@ -18,7 +18,7 @@
     ?>
     <h1 id="title">Registrati</h1>
     <div class="form" >
-        <form id="form" action="login.php" method="POST">
+        <form id="form" action="register.php" method="POST">
             <h2 class="field">Nome:</h2>
             <input class="inputField" type="text" name="name" placeholder="Nome" required><br>
             <h2 class="field">Email:</h2>

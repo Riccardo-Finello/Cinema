@@ -2,7 +2,9 @@ var p = document.getElementById('psw');
 var p2 = document.getElementById('psw2');
 var submit = document.getElementById('submit');
 
-submit.addEventListener('click', async () => {
+submit.addEventListener('click', async (e) => {
+
+    e.preventDefault();
 
     var form = document.querySelector("#form");
     if(p.value == p2.value){

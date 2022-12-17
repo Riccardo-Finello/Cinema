@@ -22,8 +22,9 @@ $results = $query->fetchAll(PDO::FETCH_OBJ);
 if (count($results) > 0) {
     
     header('Content-Type: text; charset=utf-8');
-    echo "exists";
-}else{
+    exit("exists");
+}
+else{
 
      
 
@@ -38,7 +39,7 @@ if (count($results) > 0) {
 
             
     header('Content-Type: text; charset=utf-8');
-    echo "success"; 
+    exit("success");
 }
 
 ?>

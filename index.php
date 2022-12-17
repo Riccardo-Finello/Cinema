@@ -37,9 +37,9 @@
     try{
 
 
-    $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS) or die('Error connecting to MySQL server: ' . mysql_error());
+    $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS) ;//('Error connecting to MySQL server: ' . mysql_error());
 
-    mysqli_select_db($connection, DB_NAME) or die('Error selecting MySQL database: ' . mysql_error());
+    mysqli_select_db($connection, DB_NAME) ;//or die('Error selecting MySQL database: ' . mysql_error());
 
 
     $templine = '';                         //legge il file sql ed esegue le query mano a mano che scorre le righe
@@ -57,7 +57,7 @@
     if (substr(trim($line), -1, 1) == ';')
     {
 
-        mysqli_query($connection, $templine) or print('Error performing query \'<strong>' . $templine . '\': ' . mysql_error() . '<br /><br />');
+        mysqli_query($connection, $templine) ;//('Error performing query \'<strong>' . $templine . '\': ' . mysql_error() . '<br /><br />');
 
         $templine = '';
     }

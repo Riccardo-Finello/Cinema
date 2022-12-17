@@ -28,11 +28,11 @@ if (count($results) > 0) {
     $_SESSION['Logged'] = htmlentities(true);
     
     header('Content-Type: text; charset=utf-8');
-    echo "ok";
+    exit("ok");
 }else{
 
     header('Content-Type: text; charset=utf-8');
-    echo "error"; 
+    exit("error"); 
 }
 
 ?>
